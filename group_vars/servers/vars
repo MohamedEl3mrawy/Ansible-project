@@ -1,0 +1,15 @@
+sites:
+ - name: ahmed.com
+   directory: ahmed.com
+ - name: ali.com
+   directory: ali.com
+ - name: mohamed.com
+   directory: mohamed.com
+ - name: linux.iti.eg
+   directory: linux.iti.eg
+ - name: sa.iti.eg
+   directory: sa.iti.eg
+ - name: os.iti.eg
+   directory: os.iti.eg
+ - name: admin.iti.eg
+   directory: admin.iti.eg

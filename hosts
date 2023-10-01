@@ -1,0 +1,11 @@
+## managed nodes
+[servers]
+servera
+serverb
+serverc
+serverd
+ 
+## control node
+[manager]
+ansible-manager
+

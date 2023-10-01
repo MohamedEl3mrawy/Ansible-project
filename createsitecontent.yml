@@ -1,0 +1,44 @@
+---
+- name: Create website content
+  gather_facts: false
+  hosts: servers
+  become: true
+  tasks:
+   - name: Create site document root
+     file:
+      path: "/var/www/{{ item.directory }}"
+      owner: apache
+      group: apache
+      setype: httpd_sys_content_t
+      mode: 0755
+      state: directory
+     loop: "{{ sites }}"
+
+   - name: create info.php
+     blockinfile:
+      path: "/var/www/{{ item.directory }}/info.php"
+      block: |
+       <?php
+          phpinfo();
+       ?>
+      create: true
+      owner: apache
+      group: apache
+      mode: 0440
+     loop: "{{ sites }}"
+
+   - name: Create index.html
+     blockinfile:
+      path: "/var/www/{{ item.directory }}/index.html"
+      block: |
+        <html>
+         <title> {{ item.name }}</title>
+         <body>
+               <h1><center>Welcome to <u>{{ item.name }}</u></center></h1>
+         </body>
+        </html>
+      create: true
+      owner: apache
+      group: apache
+      mode: 0440
+     loop: "{{ sites }}"

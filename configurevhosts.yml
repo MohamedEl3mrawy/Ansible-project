@@ -1,0 +1,18 @@
+---
+- name: configure virtualhost
+  gather_facts: false
+  hosts: servers
+  become: true
+  tasks:
+   - name: Create virtualhost configuration
+     template:
+      src: templ/vhosts.j2
+      dest: "/etc/httpd/conf.d/{{ item.name }}.conf"
+     loop: "{{ sites }}"
+     notify: Restart HTTPD
+
+  handlers:
+   - name: Restart HTTPD
+     service:
+      name: httpd
+      state: restarted

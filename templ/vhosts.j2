@@ -1,0 +1,16 @@
+<VirtualHost *:80>
+	ServerName {{ item.name }}
+	DocumentRoot /var/www/{{ item.directory }}
+	{# check for item.aliases defined in var of the site or no #}
+	{% if item.aliases is defined %}
+		{# the item.aliases is defined, then loop on the aliases #}
+		{% for myalias in item.aliases %}
+           		Alias /{{ myalias.name }} /var/www/{{ myalias.directory }}
+		{% endfor %}
+	{% endif %}
+</VirtualHost>
+
+<Directory /var/www/{{ item.directory }}>
+	AllowOverride all
+	Require all granted
+</Directory>

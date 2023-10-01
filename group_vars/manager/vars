@@ -1,0 +1,6 @@
+nginx_loadbalance:
+ - servera
+ - serverb
+ - serverc
+ - serverd
+

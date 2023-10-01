@@ -1,0 +1,15 @@
+---
+- name: Install HTTPD webserver
+  import_playbook: installpkg.yml
+
+- name: Create website content
+  import_playbook: createsitecontent.yml
+
+- name: Configure HTTPD virtualhost
+  import_playbook: configurevhosts.yml
+
+- name: Configure firewall
+  import_playbook: configurefirewall.yml
+
+- name: Install & Configure nginx 
+  import_playbook: installnginx.yml
